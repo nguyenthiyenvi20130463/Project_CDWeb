@@ -6,6 +6,7 @@ import { Box, Button, Grid, LinearProgress, Rating } from '@mui/material'
 import ProductReviewCard from './ProductReviewCard'
 import { spnb } from '../../../Data/spnb'
 import HomeSectionCard from '../HomeSectionCard/HomeSectionCard'
+import { useNavigate } from 'react-router-dom'
 
 const product = {
     name: 'Basic Tee 6-Pack',
@@ -69,6 +70,12 @@ function classNames(...classes) {
 export default function ProductDetails() {
     const [selectedColor, setSelectedColor] = useState(product.colors[0])
     const [selectedSize, setSelectedSize] = useState(product.sizes[2])
+    const navigate=useNavigate();
+
+    const handleAddToCart=()=>{
+        navigate("/cart")
+
+    }
 
     return (
         <div className="bg-white lg:px-20">
@@ -216,7 +223,7 @@ export default function ProductDetails() {
                                     </RadioGroup>
                                 </div>
 
-                                <Button variant='contained' sx={{ px: "2rem", py: "1rem", bgcolor: "#0A68FF" }}>
+                                <Button onClick={handleAddToCart} variant='contained' sx={{ px: "2rem", py: "1rem", bgcolor: "#0A68FF" }}>
                                     Thêm Vào Giỏ Hàng
                                 </Button>
                             </form>
