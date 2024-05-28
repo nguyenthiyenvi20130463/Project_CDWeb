@@ -1,0 +1,13 @@
+package com.zosh.service;
+
+import com.zosh.model.User;
+
+import exception.UserException;
+
+public interface UserSevice {
+	
+	public User findUserById(Long userId) throws UserException;
+	
+	public User findUserProfileByJwt(String jwt) throws UserException;
+
+}
