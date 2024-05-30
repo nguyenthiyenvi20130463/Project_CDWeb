@@ -1,0 +1,100 @@
+package com.zosh.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.zosh.exception.OrderException;
+import com.zosh.model.Address;
+import com.zosh.model.Order;
+import com.zosh.model.User;
+import com.zosh.repository.AddressRepository;
+import com.zosh.repository.OrderItemRepository;
+import com.zosh.repository.OrderRepository;
+import com.zosh.repository.UserRepository;
+
+@Service
+public class OrderServiceImplementation implements OrderService{
+	
+	private OrderRepository orderRepository;
+	private CartService cartService;
+	private AddressRepository addressRepository;
+	private UserRepository userRepository;
+	private OrderItemService orderItemService;
+	private OrderItemRepository orderItemRepository;
+	
+
+
+	public OrderServiceImplementation(OrderRepository orderRepository, CartService cartService,
+			AddressRepository addressRepository, UserRepository userRepository, OrderItemService orderItemService,
+			OrderItemRepository orderItemRepository) {
+		
+		this.orderRepository = orderRepository;
+		this.cartService = cartService;
+		this.addressRepository = addressRepository;
+		this.userRepository = userRepository;
+		this.orderItemService = orderItemService;
+		this.orderItemRepository = orderItemRepository;
+	}
+
+	@Override
+	public Order createOrder(User user, Address shippingAdress) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Order findOrderById(Long orderId) throws OrderException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> usersOrderHistory(Long userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Order placedOrder(Long orderId) throws OrderException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Order confirmedOrder(Long orderId) throws OrderException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Order shippedOrder(Long orderId) throws OrderException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Order deliveredOrder(Long orderId) throws OrderException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Order cancledOrder(Long orderId) throws OrderException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> getAllOrders() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteOrder(Long orderId) throws OrderException {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
