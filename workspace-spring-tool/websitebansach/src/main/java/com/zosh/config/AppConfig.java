@@ -21,6 +21,8 @@ import jakarta.servlet.http.HttpServletRequest;
 @Configuration
 
 public class AppConfig {
+
+	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.authorizeHttpRequests(
@@ -33,7 +35,7 @@ public class AppConfig {
 
 						CorsConfiguration cfg = new CorsConfiguration();
 
-						cfg.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://localhost:4200"));
+						cfg.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://localhost:4200", "https://codewithzosh-ecommerce.vercel.app"));
 						cfg.setAllowedMethods(Collections.singletonList("*"));
 						cfg.setAllowCredentials(true);
 						cfg.setAllowedHeaders(Collections.singletonList("*"));
