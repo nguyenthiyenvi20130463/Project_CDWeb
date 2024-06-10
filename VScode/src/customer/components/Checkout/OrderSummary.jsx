@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AddressCard from "../AddressCard/AddressCard";
 import { Button } from "@mui/material";
 import CartItem from "../Cart/CartItem";
+import { useDispatch, useSelector } from "react-redux";
+import { getOrderById } from "../../../State/Order/Action";
+import { useLocation } from "react-router-dom";
 
 const OrderSummary = () => {
+    const dispatch = useDispatch();
+    const location = useLocation();
+    const {order} = useSelector(store=>store);
+    const searchParamms = new URLSearchParams(location.search);
+    const orderId= searchParamms.get("order_id")
+
+    useEffect(()=>{
+        dispatch(getOrderById(orderId))
+    },[orderId])
     return (
         <div>
             <div className="p-5 shadow-lg rounded-5-md border">
-                <AddressCard />
+                <AddressCard address={order.order?.shippingAddress}/>
             </div>
 
             <div>
@@ -15,7 +27,9 @@ const OrderSummary = () => {
 
                 <div className="lg:grid grid-cols-3 relative">
                     <div className="col-span-2">
-                        {[1, 1, 1, 1].map((item) => <CartItem />)}
+                        {order.order?.orderItems.map((item) => (
+                        <CartItem item ={item}/>
+                        ))}
                     </div>
 
                     <div className="px-5 sticky top-0 h-[100vh] mt-5 lg:mt-0">
@@ -25,22 +39,22 @@ const OrderSummary = () => {
                             <div className="space-y-3 font-semibold mb-10">
                                 <div className="flex justify-between pt-3 text-black">
                                     <span>Giá bán</span>
-                                    <span>85.000 VND</span>
+                                    <span>{order.order?.totalPrice} VND</span>
 
                                 </div>
                                 <div className="flex justify-between pt-3 text-black">
                                     <span>Giảm giá</span>
-                                    <span>0 VND</span>
+                                    <span className="text-green-600">{order.order?.discounte} VND</span>
 
                                 </div>
                                 <div className="flex justify-between pt-3 text-black">
                                     <span>Phí vận chuyển</span>
-                                    <span>30.000 VND</span>
+                                    <span className="text-green-600">Free</span>
 
                                 </div>
                                 <div className="flex justify-between pt-3 text-black font-bold">
                                     <span>Tổng tiền</span>
-                                    <span>115.000 VND</span>
+                                    <span className="text-green-600">{order.order?.totalDiscountedPrice} VND</span>
 
                                 </div>
 

@@ -10,8 +10,8 @@ import com.zosh.model.Cart;
 import com.zosh.model.CartItem;
 import com.zosh.model.Product;
 import com.zosh.model.User;
+import com.zosh.repository.CartItemRepository;
 import com.zosh.repository.CartRepository;
-import com.zosh.response.CartItemRepository;
 
 @Service
 public class CartItemServiceImplementation implements CartItemService {
@@ -63,7 +63,7 @@ public class CartItemServiceImplementation implements CartItemService {
 	public void removeCartItem(Long userId, Long cartItemId) throws CartItemException, UserException {
 		CartItem cartItem= findCartItemById(cartItemId);
 		
-		User user = userSevice.findUserById(cartItem.getId());
+		User user = userSevice.findUserById(cartItem.getUserId());
 		
 		User reqUser = userSevice.findUserById(userId);
 		

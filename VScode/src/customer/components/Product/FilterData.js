@@ -40,10 +40,10 @@ export const singleFilter = [
         id: "price",
         name: "Price",
         options: [
-            { value: "99k-199k", label: "99K-199k" },
-            { value: "200k-399k", label: "200K-399k" },
-            { value: "400k-599k", label: "400K-599k" },
-            { value: "600k-799k", label: "600K-799k" },
+            { value: "99-199", label: "99K-199k" },
+            { value: "200-399", label: "200K-399k" },
+            { value: "400-599", label: "400K-599k" },
+            { value: "600-799", label: "600K-799k" },
         ],
     },
 

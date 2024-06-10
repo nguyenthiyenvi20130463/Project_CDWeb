@@ -1,52 +1,53 @@
 import { Button, IconButton } from "@mui/material";
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import React from "react";
+import { useDispatch } from "react-redux";
+import { removeCartItem, updateCartItem } from "../../../State/Cart/Action";
 
-const CartItem = () => {
+const CartItem = ({ item }) => {
+    const dispatch = useDispatch();
+    const handleUpdateCartItem = (num) => {
+        const data = { data: { quantity: item.quantity + num }, cartItemId: item?.id }
+        dispatch(updateCartItem(data))
+    }
+       
+    const handleRemoveCartItem = () => {
+        dispatch(removeCartItem(item.id))
+    }
+
     return (
         <div className="p-5 shadow-lg border rounded-md">
             <div className="flex items-center">
                 <div className="w-[5rem] h-[5rem] lg:w-[9rem] lg:h-[9rem]">
-                    <img className="w-full object-cover object-top" src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lry9qviy6j7oe4" alt="" />
-
+                    <img className="w-full object-cover object-top" src={item.product.imageUrl} alt="" />
                 </div>
-
                 <div className="ml-5 space-y-1">
-
-                    <p className="font-semibold">Tuổi trẻ đáng giá bao nhiêu</p>
-                    <p className="opacity-70">Số lượng: 1</p>
-                    <p className="opacity-70 mt-2">Shop: ViVi</p>
-
+                    <p className="font-semibold">{item.product.title}</p>
+                    <p className="opacity-70">Số lượng: {item.quantity}</p>
+                    <p className="opacity-70 mt-2">Tác giả: {item.product.brand}</p>
                     <div className='flex space-x-5 items-center text-gray-900 pt-6'>
-                        <p className='font-semibold'>85.000 VND</p>
-                        <p className='opacity-50 line-through'> 120.000 VND </p>
-                        <p className='text-green-600 font-semibold'>5% Off</p>
+                        <p className='font-semibold'>{item.price} VND</p>
+                        <p className='opacity-50 line-through'> {item.discountedPrice} VND </p>
+                        <p className='text-green-600 font-semibold'>{item.product.discountPersent}% Off</p>
                     </div>
-
                 </div>
-
-
             </div>
             <div className="lg:flex items-center lg:space-x-10 pt-4">
-
                 <div className="flex items-center space-x-1">
-                    <IconButton>
+                    <IconButton onClick={() => handleUpdateCartItem(-1)} disabled={item.quantity <= 1}>
                         <RemoveCircleOutlineIcon />
                     </IconButton>
-                    <span className="py-1 px-6 boder rounded-sm">1</span>
-                    <IconButton sx={{ color: "#0A68FF" }}>
+                    <span className="py-1 px-6 boder rounded-sm">{item.quantity}</span>
+                    <IconButton onClick={() => handleUpdateCartItem(1)} sx={{ color: "RGB(145 85 253)" }}>
                         <AddCircleOutlineIcon />
                     </IconButton>
-
                 </div>
-
                 <div>
-                    <Button sx={{ color: "#0A68FF" }}>Số lượng</Button>
+                    <Button onClick={handleRemoveCartItem} sx={{ color: "RGB(145 85 253)" }}>REMOVE</Button>
                 </div>
-
             </div>
         </div>
-    )
-}
-export default CartItem
+    );
+};
+
+export default CartItem;

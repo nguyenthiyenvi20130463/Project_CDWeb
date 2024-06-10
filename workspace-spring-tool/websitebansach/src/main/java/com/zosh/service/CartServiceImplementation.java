@@ -65,19 +65,19 @@ public class CartServiceImplementation implements CartService {
 		Cart cart = cartRepository.findByUserId(userId);
 		
 		int totalPrice =0;
-		int totalDIscountedPrice =0;
+		int totalDiscountedPrice =0;
 		int totalIttem =0;
 		
 		for(CartItem cartItem :cart.getCartItems()) {
-			totalPrice+=cartItem.getPrice();
-			totalDIscountedPrice+=cartItem.getDiscountedPrice();
-			totalIttem+=cartItem.getQuantity();
+			totalPrice=totalPrice+cartItem.getPrice();
+			totalDiscountedPrice=totalDiscountedPrice+ cartItem.getDiscountedPrice();
+			totalIttem=totalIttem+cartItem.getQuantity();
 		}
 		
-		cart.setTotalDiscountedPrice(totalDIscountedPrice);
+		cart.setTotalDiscountedPrice(totalDiscountedPrice);
 		cart.setTotalItem(totalIttem);
 		cart.setTotalPrice(totalPrice);
-		cart.setDiscounte(totalPrice-totalDIscountedPrice);
+		cart.setDiscounte(totalPrice-totalDiscountedPrice);
 		
 		return cartRepository.save(cart);
 	}

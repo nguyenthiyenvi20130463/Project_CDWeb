@@ -20,7 +20,7 @@ import com.zosh.service.OrderService;
 import com.zosh.service.ProductService;
 
 @RestController
-@RequestMapping("/api/adim/orders")
+@RequestMapping("/api/admin/orders")
 public class AdminOrderController {
 	
 	@Autowired
@@ -45,7 +45,15 @@ public class AdminOrderController {
 	public ResponseEntity<Order> ShippedOrderHandler(@PathVariable Long orderId,
 			@RequestHeader("Authorization") String jwt) throws OrderException{
 		
-		Order order = orderService.confirmedOrder(orderId);
+		Order order = orderService.shippedOrder(orderId);
+		
+		return new ResponseEntity<>(order, HttpStatus.OK);
+	}
+	@PutMapping("/{orderId}/cancel")
+	public ResponseEntity<Order> CancelOrderHandler(@PathVariable Long orderId,
+			@RequestHeader("Authorization") String jwt) throws OrderException{
+		
+		Order order = orderService.cancledOrder(orderId);
 		
 		return new ResponseEntity<>(order, HttpStatus.OK);
 	}

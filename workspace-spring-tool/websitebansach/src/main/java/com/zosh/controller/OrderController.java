@@ -49,7 +49,7 @@ public class OrderController {
 		return new ResponseEntity<>(orders, HttpStatus.CREATED);
 	}
 
-	@GetMapping("/Id")
+	@GetMapping("/{Id}")
 	public ResponseEntity<Order> findOrderById (@PathVariable("Id") Long orderId,
 			@RequestHeader("Authorization") String jwt) throws UserException, OrderException {
 		User user = userSevice.findUserProfileByJwt(jwt);

@@ -9,8 +9,9 @@ import { filters, singleFilter } from './FilterData'
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { findProducts } from '../../../State/Product/Action'
+import Pagination from '@mui/material/Pagination';
 
 const sortOptions = [
   { name: 'Price: Low to High', href: '#', current: false },
@@ -27,16 +28,26 @@ export default function Product() {
   const navigate = useNavigate();
   const param = useParams();
   const dispatch = useDispatch();
+  const { products } = useSelector(store => store)
 
-  const decodedQueryString=decodeURIComponent(location.search);
-  const searchParamms=new URLSearchParams(decodedQueryString);
-  const colorValue=searchParamms.get("color")
-  const sizeValue=searchParamms.get("size")
-  const priceValue=searchParamms.get("price")
-  const disccount=searchParamms.get("disccount")
-  const sortValue=searchParamms.get("sort");
-  const pageNumber=searchParamms.get("page") || 1;
-  const stock=searchParamms.get("stock");
+
+  const decodedQueryString = decodeURIComponent(location.search);
+  const searchParamms = new URLSearchParams(decodedQueryString);
+  const colorValue = searchParamms.get("color")
+  const sizeValue = searchParamms.get("size")
+  const priceValue = searchParamms.get("price")
+  const disccount = searchParamms.get("disccount")
+  const sortValue = searchParamms.get("sort");
+  const pageNumber = searchParamms.get("page") || 1;
+  const stock = searchParamms.get("stock");
+
+  const handlePaginationChange = (event, value) => {
+    const searchParamms = new URLSearchParams(location.search)
+    searchParamms.set("page", value);
+    const query = searchParamms.toString();
+    console.log(searchParamms, value)
+    navigate({ search: `?${query}` })
+  }
 
   const handleFilter = (value, sectionId) => {
     const searchParamms = new URLSearchParams(location.search)
@@ -72,32 +83,32 @@ export default function Product() {
   }
 
 
-useEffect(()=>{
-  const [minPrice, maxPrice]=priceValue===null?[0,10000]:priceValue.split("-").map(Number);
+  useEffect(() => {
+    const [minPrice, maxPrice] = priceValue === null ? [0, 10000] : priceValue.split("-").map(Number);
 
-  const data={
-    category:param.lavelThree,
-    colors:colorValue || [],
-    sizes: sizeValue | [],
-    minPrice,
-    maxPrice,
-    minDiscount: disccount || 0,
-    sort:sortValue || "price_low",
-    pageNumber: pageNumber - 1,
-    pageSize: 10,
-    stock:stock
-  }
-  dispatch(findProducts(data))
+    const data = {
+      category: param.lavelThree,
+      colors: colorValue || [],
+      sizes: sizeValue | [],
+      minPrice,
+      maxPrice,
+      minDiscount: disccount || 0,
+      sort: sortValue || "price_low",
+      pageNumber: pageNumber - 1,
+      pageSize: 1,
+      stock: stock
+    }
+    dispatch(findProducts(data))
 
-},[param.lavelThree,
-  colorValue,
-  sizeValue,
-  priceValue,
-  disccount,
-  sortValue,
-  pageNumber,
-  stock
-])
+  }, [param.lavelThree,
+    colorValue,
+    sizeValue,
+    priceValue,
+    disccount,
+    sortValue,
+    pageNumber,
+    stock
+  ])
 
 
   return (
@@ -366,10 +377,19 @@ useEffect(()=>{
               <div className="lg:col-span-4 w-full">
 
                 <div className='flex flex-wrap justity-center bg-white py-5'>
-                  {spnb.map((item) => <ProductCard product={item} />)}
+                  {products.products && products.products?.content?.map((item) => (
+                    <ProductCard product={item} />
+                  ))}
                 </div>
 
               </div>
+            </div>
+          </section>
+
+          <section className="w-full px=[3.6rem]">
+            <div className="px-4 py-5 flex justify-center">
+              <Pagination count={products.products?.totalPages} color="secondary"
+                onChange={handlePaginationChange} />
             </div>
           </section>
         </main>

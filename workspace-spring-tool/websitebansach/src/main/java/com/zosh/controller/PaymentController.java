@@ -30,7 +30,7 @@ import com.zosh.service.UserSevice;
 @RestController
 @RequestMapping("/api")
 public class PaymentController {
-	
+//	
 //	@Value("${razorpay.api.key}")
 //	String apiKey;
 //	
@@ -89,11 +89,13 @@ public class PaymentController {
 //		}	
 //	}
 //	@GetMapping("/payments")
-//	public ResponseEntity<ApiResponse> redirect(@RequestParam(name ="payment_id")String paymentId,@RequestParam(name = "order_id")Long orderId) throws OrderException, RazorpayException{
+//	public ResponseEntity<ApiResponse> redirect(@RequestParam(name ="payment_id")String paymentId,@RequestParam(
+//			name = "order_id")Long orderId) throws OrderException, RazorpayException{
 //		Order order = orderService.findOrderById(orderId);
 //		RazorpayClient razorpay = new RazorpayClient(apiKey, apiSecret);
-//		
-//		System.out.println("Mã thanh toán: " + paymentId + "Mã đơn hàng: "+ orderId);
+//		//
+//		System.out.println("Mã thanh toán: " + paymentId + "- Mã đơn hàng: "+ orderId);
+//		//
 //		try {
 //			
 //			Payment payment =razorpay.payments.fetch(paymentId);
