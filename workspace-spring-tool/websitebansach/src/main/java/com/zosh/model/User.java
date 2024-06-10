@@ -36,7 +36,7 @@ public class User {
 	
 	@Embedded
 	@ElementCollection
-	@CollectionTable(name = "payment_ìnormation", joinColumns = @JoinColumn(name ="user_id"))
+	@CollectionTable(name = "payment_information", joinColumns = @JoinColumn(name ="user_id"))
 	private List<PaymentInformation> paymentInformations = new ArrayList<>();
 	
 	@OneToMany(mappedBy="user", cascade =  CascadeType.ALL)

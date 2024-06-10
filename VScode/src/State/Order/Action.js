@@ -13,14 +13,14 @@ export const createOrder = (reqdata) => async (dispatch) => {
     try {
 
         const { data } = await api.post(
-            `/api/orders`,
+            `/api/orders/`,
             reqdata.address,
 
         );
         if (data.id) {
             reqdata.navigate({ search: `step=3&order_id=${data.id}` });
         }
-        console.log("created order - ", data);
+        console.log("created order : ", data);
         dispatch({
             type: CREATE_ORDER_SUCCESS,
             payload: data,
@@ -47,7 +47,7 @@ export const getOrderById = (orderId) => async (dispatch) => {
             payload: data,
         });
     } catch (error) {
-        console.log("catch ", error)
+        console.log("catch error : ", error)
         dispatch({
             type: GET_ORDER_BY_ID_FAILURE,
             payload: error.message

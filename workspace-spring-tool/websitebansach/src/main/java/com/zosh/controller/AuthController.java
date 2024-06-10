@@ -107,7 +107,7 @@ public class AuthController {
 			throw new BadCredentialsException("Tên sử dụng không hợp lệ");
 		}
 
-		if (passwordEncoder.matches(password, userDetails.getPassword())) {
+		if (!passwordEncoder.matches(password, userDetails.getPassword())) {
 			throw new BadCredentialsException("Mật khẩu sử dụng không hợp lệ");
 		}
 		return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
