@@ -5,21 +5,27 @@ import CartItem from "../Cart/CartItem";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrderById } from "../../../State/Order/Action";
 import { useLocation } from "react-router-dom";
+import { createPayment } from "../../../State/Payment/Action";
 
 const OrderSummary = () => {
     const dispatch = useDispatch();
     const location = useLocation();
-    const {order} = useSelector(store=>store);
+    const { order } = useSelector(store => store);
     const searchParamms = new URLSearchParams(location.search);
-    const orderId= searchParamms.get("order_id")
+    const orderId = searchParamms.get("order_id")
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getOrderById(orderId))
-    },[orderId])
+    }, [orderId])
+
+    const handleCheckout = () => {
+        dispatch(createPayment(orderId))
+
+    }
     return (
         <div>
             <div className="p-5 shadow-lg rounded-5-md border">
-                <AddressCard address={order.order?.shippingAddress}/>
+                <AddressCard address={order.order?.shippingAddress} />
             </div>
 
             <div>
@@ -28,7 +34,7 @@ const OrderSummary = () => {
                 <div className="lg:grid grid-cols-3 relative">
                     <div className="col-span-2">
                         {order.order?.orderItems.map((item) => (
-                        <CartItem item ={item}/>
+                            <CartItem item={item} />
                         ))}
                     </div>
 
@@ -59,7 +65,8 @@ const OrderSummary = () => {
                                 </div>
 
                             </div>
-                            <Button variant='contained' className="w-full mt-5" sx={{ px: "2.5rem", py: ".7rem", bgcolor: "#0A68FF" }}>
+                            <Button variant='contained' className="w-full mt-5" sx={{ px: "2.5rem", py: ".7rem", bgcolor: "#0A68FF" }}
+                                onClick={handleCheckout}>
                                 Mua ngay
                             </Button>
                         </div>
