@@ -7,7 +7,7 @@ import com.zosh.model.Size;
 
 public class CreateProductRequest {
 
-	private String tilte;
+	private String title;
 	private String description;
 	private int price;
 	private int discountedPrice;
@@ -22,11 +22,11 @@ public class CreateProductRequest {
 	private String topLavelCategory;
 	private String secondLavelCategory;
 	private String thirdLavelCategory;
-	public String getTilte() {
-		return tilte;
+	public String getTitle() {
+		return title;
 	}
-	public void setTilte(String tilte) {
-		this.tilte = tilte;
+	public void setTilte(String title) {
+		this.title = title;
 	}
 	public String getDescription() {
 		return description;
