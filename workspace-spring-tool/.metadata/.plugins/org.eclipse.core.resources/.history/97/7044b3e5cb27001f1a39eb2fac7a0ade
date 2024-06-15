@@ -1,0 +1,27 @@
+package com.zosh.service;
+
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+
+import com.zosh.exception.ProductException;
+import com.zosh.model.Products;
+import com.zosh.request.CreateProductRequest;
+
+public interface ProductService {
+
+	public Products createProduct(CreateProductRequest req);
+	
+	public String deleteProduct(Long productId) throws ProductException;
+	
+	public Products updateProduct(Long productId, Products req) throws ProductException;
+	
+	public Products findProductById(Long id) throws ProductException;
+	
+	public List<Products> findProductByCategory(String category);
+	
+	public Page<Products> getAllProduct(String category,List<String> colors, List<String>sizes, Integer minPrice, Integer maxPrice, Integer minDiscount, String sort, String stock, Integer pageNumber, Integer pageSize);
+
+	public List<Products> findAllProducts();
+	
+}

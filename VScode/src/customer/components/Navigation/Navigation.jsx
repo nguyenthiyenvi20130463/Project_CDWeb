@@ -29,7 +29,7 @@ export default function Navigation() {
   const [anchorEl, setAnchorEl] = useState(null);
   const openUserMenu = Boolean(anchorEl);
   const jwt = localStorage.getItem("jwt");
-  const {auth}=useSelector(store=>store)
+  const { auth } = useSelector(store => store)
   const dispatch = useDispatch();
   const location = useLocation();
 
@@ -46,7 +46,6 @@ export default function Navigation() {
   };
   const handleClose = () => {
     setOpenAuthModal(false);
-    navigate("/")
   };
 
   const handleCategoryClick = (category, section, item, close) => {
@@ -54,23 +53,23 @@ export default function Navigation() {
     close();
   };
 
-  useEffect(()=>{
-    if(jwt){
-        dispatch(getUser(jwt))
+  useEffect(() => {
+    if (jwt) {
+      dispatch(getUser(jwt))
     }
-    
-},[jwt, auth.jwt])
 
-  useEffect(()=>{
-    if(auth.user){
+  }, [jwt, auth.jwt])
+
+  useEffect(() => {
+    if (auth.user) {
       handleClose()
     }
-    if(location.pathname==="/login" || location.pathname==="/register"){
+    if (location.pathname === "/login" || location.pathname === "/register") {
       navigate(-1)
     }
-  },[auth.user])
+  }, [auth.user])
 
-  const handleLogout=()=>{
+  const handleLogout = () => {
     dispatch(logout())
     handleCloseUserMenu()
   }
@@ -432,7 +431,7 @@ export default function Navigation() {
                           "aria-labelledby": "basic-button",
                         }}
                       >
-                        <MenuItem onClick={()=>navigate("/account/order")}>
+                        <MenuItem onClick={() => navigate("/account/order")}>
                           Đơn Hàng
                         </MenuItem>
                         <MenuItem onClick={handleLogout}>Đăng Xuất</MenuItem>
@@ -481,7 +480,7 @@ export default function Navigation() {
           </div>
         </nav>
       </header>
-      <AuthModal handleClose={handleClose} open={openAuthModal}/>
+      <AuthModal handleClose={handleClose} open={openAuthModal} />
     </div>
   );
 }
