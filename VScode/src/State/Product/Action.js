@@ -17,8 +17,6 @@ import {
 export const findProducts = (reqData) => async (dispatch) => {
     dispatch({ type: FIND_PRODUCTS_REQUEST })
     const {
-        colors,
-        sizes,
         minPrice,
         maxPrice,
         minDiscount,
@@ -30,7 +28,7 @@ export const findProducts = (reqData) => async (dispatch) => {
     } = reqData;
 
     try {
-        const { data } = await api.get(`/api/products?color=${colors}&size=${sizes}&minPrice=${minPrice}
+        const { data } = await api.get(`/api/products?minPrice=${minPrice}
         &maxPrice=${maxPrice}&minDiscount=${minDiscount}&category=${category}&stock=${stock}&sort=
         ${sort}&pageNumber=${pageNumber}&pageSize=${pageSize}`)
 

@@ -24,10 +24,10 @@ const CartItem = ({ item }) => {
                 <div className="ml-5 space-y-1">
                     <p className="font-semibold">{item.product.title}</p>
                     <p className="opacity-70">Số lượng: {item.quantity}</p>
-                    <p className="opacity-70 mt-2">Tác giả: {item.product.brand}</p>
+                    <p className="opacity-70 mt-2">Tác giả: {item.product.author}</p>
                     <div className='flex space-x-5 items-center text-gray-900 pt-6'>
-                        <p className='font-semibold'>{item.price} VND</p>
-                        <p className='opacity-50 line-through'> {item.discountedPrice} VND </p>
+                        <p className='font-semibold'>{item.price} K</p>
+                        <p className='opacity-50 line-through'> {item.discountedPrice} K </p>
                         <p className='text-green-600 font-semibold'>{item.product.discountPersent}% Off</p>
                     </div>
                 </div>

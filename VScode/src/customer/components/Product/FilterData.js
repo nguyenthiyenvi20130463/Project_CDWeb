@@ -1,78 +1,40 @@
-export const color = [
-    "white",
-    "Black",
-    "Red",
-    "marun",
-    "Being",
-    "Pink",
-    "Green",
-    "Yellow",
-];
+// export const color = [
+//     "white",
+//     "Black",
+//     "Red",
+//     "marun",
+//     "Being",
+//     "Pink",
+//     "Green",
+//     "Yellow",
+// ];
 
 export const filters = [
-    {
-        id: "color",
-        name: "Color",
-        options: [
-            { value: "white", label: "White" },
-            { value: "beige", label: "Beige" },
-            { value: "blue", label: "Blue" },
-            { value: "brown", label: "Brown" },
-            { value: "green", label: "Green" },
-            { value: "purple", label: "Purple" },
-            { value: "yellow", label: "Yellow" },
-        ],
-    },
 
-    {
-        id: "size",
-        name: "Size",
-        options: [
-            { value: "S", label: "S" },
-            { value: "M", label: "M" },
-            { value: "L", label: "L" },
-        ],
-    },
 ];
 
 export const singleFilter = [
+    // {
+    //     id: "categories",
+    //     name: "Categories",
+    //     options: [
+    //         { value: "huong_nghiep", label: "Hướng Nghiệp & Phát Triển Bản Thân" },
+    //         { value: "van_hoc_lang_man", label: "Văn Học Lãng Mạn" },
+    //         { value: "van_hoc_hanh_dong", label: "Văn Học Hành Động, Tội Phạm & Kinh Dị" },
+    //         { value: "tieng_anh", label: "Tiếng Anh" }
+    //     ],
+    // },
+
     {
         id: "price",
         name: "Price",
         options: [
-            { value: "99-199", label: "99K-199k" },
-            { value: "200-399", label: "200K-399k" },
-            { value: "400-599", label: "400K-599k" },
-            { value: "600-799", label: "600K-799k" },
+            { value: "10-39", label: "10K-39k" },
+            { value: "40-79", label: "40K-79k" },
+            { value: "80-109", label: "80K-109k" },
+            { value: "110-139", label: "110K-139k" },
         ],
-    },
-
-    {
-        id: "disccout",
-        name: "Disccout Range",
-        options: [
-            {
-                value: "10",
-                label: "10% And Above",
-            },
-            { value: "20", label: "20% And Above" },
-            { value: "30", label: "30% And Above" },
-            { value: "40", label: "40% And Above" },
-            { value: "50", label: "50% And Above" },
-            { value: "60", label: "60% And Above" },
-            { value: "70", label: "70% And Above" },
-            { value: "80", label: "80% And Above" },
-        ],
-    },
-
-    {
-        id: "stock",
-        name: "Availability",
-        options: [
-            { value: "in_stock", label: "In Stock" },
-            { value: "out_of_stock", label: "Out Of Stock" },
-        ],
-    },
+    }
 ];
 
 export const sortOptions = [

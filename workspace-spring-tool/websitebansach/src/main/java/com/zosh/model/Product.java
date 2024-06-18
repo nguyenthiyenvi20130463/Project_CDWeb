@@ -17,8 +17,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name="products")
 public class Product {
 
 	@Id
@@ -40,16 +42,14 @@ public class Product {
 	@Column(name = "quantity")
 	private int quantity;
 
-	@Column(name = "brand")
-	private String brand;
+	@Column(name = "author")
+	private String author;
 
-	@Column(name = "color")
-	private String color;
+	@Column(name = "publisher")
+	private String publisher;
 
-	@Embedded
-	@ElementCollection
-	@Column(name = "sizes")
-	private Set<Size> sizes = new HashSet<>();
+	@Column(name = "isbn")
+	private String isbn;
 
 	@Column(name = "image_url")
 	private String imageUrl;
@@ -70,11 +70,11 @@ public class Product {
 	private LocalDateTime createAt;
 
 	public Product() {
-		
+
 	}
 
 	public Product(Long id, String title, String desciption, int price, int discountedPrice, int discountPersent,
-			int quantity, String brand, String color, Set<Size> sizes, String imageUrl, List<Rating> ratings,
+			int quantity, String author, String publisher, String isbn, String imageUrl, List<Rating> ratings,
 			List<Review> reviews, int numRatings, Category category, LocalDateTime createAt) {
 		super();
 		this.id = id;
@@ -84,9 +84,9 @@ public class Product {
 		this.discountedPrice = discountedPrice;
 		this.discountPersent = discountPersent;
 		this.quantity = quantity;
-		this.brand = brand;
-		this.color = color;
-		this.sizes = sizes;
+		this.author = author;
+		this.publisher = publisher;
+		this.isbn = isbn;
 		this.imageUrl = imageUrl;
 		this.ratings = ratings;
 		this.reviews = reviews;
@@ -151,28 +151,28 @@ public class Product {
 		this.quantity = quantity;
 	}
 
-	public String getBrand() {
-		return brand;
+	public String getAuthor() {
+		return author;
 	}
 
-	public void setBrand(String brand) {
-		this.brand = brand;
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 
-	public String getColor() {
-		return color;
+	public String getPublisher() {
+		return publisher;
 	}
 
-	public void setColor(String color) {
-		this.color = color;
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
 	}
 
-	public Set<Size> getSizes() {
-		return sizes;
+	public String getIsbn() {
+		return isbn;
 	}
 
-	public void setSizes(Set<Size> sizes) {
-		this.sizes = sizes;
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 
 	public String getImageUrl() {

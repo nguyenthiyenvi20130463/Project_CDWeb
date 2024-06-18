@@ -33,8 +33,6 @@ export default function Product() {
 
   const decodedQueryString = decodeURIComponent(location.search);
   const searchParamms = new URLSearchParams(decodedQueryString);
-  const colorValue = searchParamms.get("color")
-  const sizeValue = searchParamms.get("size")
   const priceValue = searchParamms.get("price")
   const disccount = searchParamms.get("disccount")
   const sortValue = searchParamms.get("sort");
@@ -88,21 +86,17 @@ export default function Product() {
 
     const data = {
       category: param.lavelThree,
-      colors: colorValue || [],
-      sizes: sizeValue | [],
       minPrice,
       maxPrice,
       minDiscount: disccount || 0,
       sort: sortValue || "price_low",
       pageNumber: pageNumber - 1,
-      pageSize: 1,
+      pageSize: 8,
       stock: stock
     }
     dispatch(findProducts(data))
 
   }, [param.lavelThree,
-    colorValue,
-    sizeValue,
     priceValue,
     disccount,
     sortValue,
@@ -196,7 +190,7 @@ export default function Product() {
                           </>
                         )}
                       </Disclosure>
-                    ))}
+                     ))} 
                   </form>
                 </Dialog.Panel>
               </Transition.Child>
@@ -205,8 +199,8 @@ export default function Product() {
         </Transition.Root>
 
         <main className="mx-auto px-4 sm:px-6 lg:px-20">
-          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900">New Arrivals</h1>
+          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-5">
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900">Book Store</h1>
 
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
@@ -353,12 +347,10 @@ export default function Product() {
                                 >
                                   {section.options.map((option, optionIdx) => (
 
-
                                     <>
                                       <FormControlLabel onChange={(e) => handleRadioFilterChange(e, section.id)} value={option.value} control={<Radio />} label={option.label} />
 
                                     </>
-
 
                                   ))}
                                 </RadioGroup>
