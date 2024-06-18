@@ -73,14 +73,14 @@ public class ProductServiceImplementation implements ProductService {
 
 		Product product = new Product();
 		product.setTitle(req.getTitle());
-		product.setColor(req.getColor());
+		product.setAuthor(req.getAuthor());
 		product.setDesciption(req.getDescription());
 		product.setDiscountedPrice(req.getDiscountedPrice());
 		product.setDiscountPersent(req.getDiscountPersent());
 		product.setImageUrl(req.getImageUrl());
-		product.setBrand(req.getBrand());
+		product.setPublisher(req.getPublisher());
 		product.setPrice(req.getPrice());
-		product.setSizes(req.getSize());
+		product.setIsbn(req.getIsbn());
 		product.setQuantity(req.getQuantity());
 		product.setCategory(thirdLevel);
 		product.setCreateAt(LocalDateTime.now());
@@ -95,7 +95,6 @@ public class ProductServiceImplementation implements ProductService {
 	public String deleteProduct(Long productId) throws ProductException {
 
 		Product product = findProductById(productId);
-		product.getSizes().clear();
 		productRepository.delete(product);
 		return "Sản phẩm đã được xóa thành công";
 	}
@@ -127,47 +126,40 @@ public class ProductServiceImplementation implements ProductService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	@Override
-	public Page<Product> getAllProduct(String category, List<String> colors, List<String> sizes, Integer minPrice,
-	        Integer maxPrice, Integer minDiscount, String sort, String stock, Integer pageNumber, Integer pageSize) {
+	public Page<Product> getAllProduct(String category, Integer minPrice, Integer maxPrice, Integer minDiscount,
+			String sort, String stock, Integer pageNumber, Integer pageSize) {
 
-	    Pageable pageable = PageRequest.of(pageNumber, pageSize);
+		Pageable pageable = PageRequest.of(pageNumber, pageSize);
 
-	    List<Product> products = productRepository.filterProducts(category, minPrice, maxPrice, minDiscount, sort);
+		List<Product> products = productRepository.filterProducts(category, minPrice, maxPrice, minDiscount, sort);
 
-	    System.out.println("Initial Products Size: " + products.size());
+		System.out.println("Initial Products Size: " + products.size());
 
-	    if (products == null || products.isEmpty()) {
-	        return new PageImpl<>(List.of(), pageable, 0);
-	    }
+		if (products == null || products.isEmpty()) {
+			return new PageImpl<>(List.of(), pageable, 0);
+		}
 
-	    if (!colors.isEmpty()) {
-	        products = products.stream()
-	                .filter(p -> colors.stream().anyMatch(c -> c.equalsIgnoreCase(p.getColor())))
-	                .collect(Collectors.toList());
-	    }
+		if (stock != null) {
+			if (stock.equals("in_stock")) {
+				products = products.stream().filter(p -> p.getQuantity() > 0).collect(Collectors.toList());
+			} else if (stock.equals("out_of_stock")) {
+				products = products.stream().filter(p -> p.getQuantity() < 1).collect(Collectors.toList());
+			}
+		}
 
-	    if (stock != null) {
-	        if (stock.equals("in_stock")) {
-	            products = products.stream().filter(p -> p.getQuantity() > 0).collect(Collectors.toList());
-	        } else if (stock.equals("out_of_stock")) {
-	            products = products.stream().filter(p -> p.getQuantity() < 1).collect(Collectors.toList());
-	        }
-	    }
+		int startIndex = (int) pageable.getOffset();
+		int endIndex = Math.min(startIndex + pageable.getPageSize(), products.size());
 
-	    int startIndex = (int) pageable.getOffset();
-	    int endIndex = Math.min(startIndex + pageable.getPageSize(), products.size());
+		List<Product> pageContent = products.subList(startIndex, endIndex);
 
-	    List<Product> pageContent = products.subList(startIndex, endIndex);
+		System.out.println("Page Content Size: " + pageContent.size());
 
-	    System.out.println("Page Content Size: " + pageContent.size());
+		Page<Product> filteredProducts = new PageImpl<>(pageContent, pageable, products.size());
 
-	    Page<Product> filteredProducts = new PageImpl<>(pageContent, pageable, products.size());
-
-	    return filteredProducts;
+		return filteredProducts;
 	}
-
 
 	@Override
 	public List<Product> findAllProducts() {

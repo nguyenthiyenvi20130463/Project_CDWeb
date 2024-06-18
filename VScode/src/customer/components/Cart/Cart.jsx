@@ -33,22 +33,22 @@ const Cart = () => {
                         <div className="space-y-3 font-semibold mb-10">
                             <div className="flex justify-between pt-3 text-black">
                                 <span>Giá bán</span>
-                                <span>{cart.cart?.totalPrice} VND</span>
+                                <span>{cart.cart?.totalPrice} K</span>
 
                             </div>
                             <div className="flex justify-between pt-3 text-black">
                                 <span>Giảm giá</span>
-                                <span className='text-green-600'>-{cart.cart?.discounte} VND</span>
+                                <span className='text-green-600'>-{cart.cart?.discounte} K</span>
 
                             </div>
                             <div className="flex justify-between pt-3 text-black">
                                 <span>Phí vận chuyển</span>
-                                <span className='text-green-600'>30.000 VND</span>
+                                <span className='text-green-600'>Free</span>
 
                             </div>
                             <div className="flex justify-between pt-3 text-black font-bold">
                                 <span>Tổng tiền</span>
-                                <span className='text-green-600'>{cart.cart?.totalDiscountedPrice}</span>
+                                <span className='text-green-600'>{cart.cart?.totalDiscountedPrice} K</span>
 
                             </div>
 
