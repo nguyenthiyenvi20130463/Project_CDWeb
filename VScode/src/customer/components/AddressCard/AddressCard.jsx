@@ -5,8 +5,7 @@ const AddressCard = ({ address }) => {
         <div>
             <div className="space-y-3">
                 <p className="font-semibold">{address?.firstName + " " + address?.lastName}</p>
-                {/* <p>{address?.state}, {address?.city}</p> */}
-                <p>{address?.state},{address?.streetAddress},{address?.zipCode}</p>
+                <p>{address?.city}</p>
                 <div className="space-y-1">
                     <p className="font-semibold">Số điện thoại</p>
                     <p>{address?.mobile}</p>

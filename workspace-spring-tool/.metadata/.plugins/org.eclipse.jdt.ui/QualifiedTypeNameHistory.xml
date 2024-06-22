@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.zosh.request.CreateProductRequest"/>
-    <fullyQualifiedTypeName name="jakarta.persistence.TableGenerator"/>
     <fullyQualifiedTypeName name="com.zosh.service.RatingService"/>
     <fullyQualifiedTypeName name="com.zosh.request.RatingRequest"/>
     <fullyQualifiedTypeName name="com.zosh.model.Rating"/>
@@ -60,4 +58,6 @@
     <fullyQualifiedTypeName name="jakarta.persistence.Column"/>
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
     <fullyQualifiedTypeName name="com.zosh.model.Product"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="com.zosh.request.CreateProductRequest"/>
 </qualifiedTypeNameHistroy>

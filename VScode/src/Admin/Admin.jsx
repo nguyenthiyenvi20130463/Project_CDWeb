@@ -11,6 +11,7 @@ import ProductsTable from './components/ProductsTable';
 import OrdersTable from './components/OrdersTable';
 import CustomersTable from './components/CustomersTable';
 import AdminDashboard from './components/Dashboard';
+import UpdateProductForm from './components/UpdateProductForm';
 
 const menu = [
     { name: "Dashboard", path: "/admin", icon: <DashboardIcon /> },
@@ -18,7 +19,6 @@ const menu = [
     { name: "Customers", path: "/admin/customers", icon: <DashboardIcon /> },
     { name: "Orders", path: "/admin/orders", icon: <DashboardIcon /> },
     { name: "Add Product", path: "/admin/product/create", icon: <DashboardIcon /> },
-    // { name: "", path: " " },
 ]
 
 const Admin = () => {
@@ -84,6 +84,7 @@ const Admin = () => {
                     <Route path='/products' element={<ProductsTable />}></Route>
                     <Route path='/orders' element={<OrdersTable />}></Route>
                     <Route path='/customers' element={<CustomersTable />}></Route>
+                    <Route path='/product/update/:id' element={<UpdateProductForm />}></Route>
 
                 </Routes>
             </div>

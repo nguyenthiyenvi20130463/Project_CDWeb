@@ -12,59 +12,42 @@ import { findProductsById } from '../../../State/Product/Action'
 import { addItemToCart } from '../../../State/Cart/Action'
 
 const product = {
-    name: 'Basic Tee 6-Pack',
+    name: '',
     price: '85.000 VND',
     href: '#',
     breadcrumbs: [
-        { id: 1, name: 'Men', href: '#' },
-        { id: 2, name: 'Clothing', href: '#' },
+        { id: 1, name: 'Sach', href: '#' },
+        { id: 2, name: 'Sach_Hay', href: '#' },
     ],
     images: [
         {
-            src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg',
-            alt: 'Two each of gray, white, and black shirts laying flat.',
+            src: 'https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lulx1vmwgagp4e',
         },
         {
-            src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg',
-            alt: 'Model wearing plain black basic tee.',
+            src: 'https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lulx1vpecmy446',
         },
         {
-            src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg',
-            alt: 'Model wearing plain gray basic tee.',
+            src: 'https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lulx1vu45qioe3',
         },
         {
-            src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg',
-            alt: 'Model wearing plain white basic tee.',
+            src: 'https://down-vn.img.susercontent.com/file/vn-11134201-7r98o-lulx1vy9znko4d',
         },
     ],
     colors: [
-        { name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
-        { name: 'Gray', class: 'bg-gray-200', selectedClass: 'ring-gray-400' },
-        { name: 'Black', class: 'bg-gray-900', selectedClass: 'ring-gray-900' },
+
     ],
     sizes: [
 
-
-        { name: 'S', inStock: true },
-        { name: 'M', inStock: true },
-        { name: 'L', inStock: true },
-        { name: 'XL', inStock: true },
-
     ],
     description:
-        'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
+        '',
     highlights: [
-        'Hand cut and sewn locally',
-        'Dyed with our proprietary colors',
-        'Pre-washed & pre-shrunk',
-        'Ultra-soft 100% cotton',
+
     ],
     details:
-        'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
+        '',
 }
 const reviews = { href: '#', average: 4, totalCount: 117 }
-// eslint-disable-next-line react-hooks/rules-of-hooks
-
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -80,7 +63,7 @@ export default function ProductDetails() {
     console.log("----- ", params.productId)
 
     const handleAddToCart = () => {
-        const data = {productId:params.productId, size:selectedSize.name}
+        const data = { productId: params.productId, size: selectedSize.name }
         console.log("data _", data)
         dispatch(addItemToCart(data))
         navigate("/cart")
@@ -147,11 +130,8 @@ export default function ProductDetails() {
                     {/* Product info */}
                     <div className="lg:col-span-1 maxt-auto max-w-2xl px-4 pb-16 sm:px-6 lg:max-w-7xl lg:px-8 lg:pb-24">
                         <div className="lg:col-span-2  ">
-                            <h1 className="text-lg lg:text-xl font-semibold text-gray-900">
-                                {" "}
-                                {products.product?.brand}
-                            </h1>
-                            <h1 className='text-lg lg:text-xl text-gray-900 opacity-60 pt-1'>
+                            <h1 className='text-lg lg:text-xl font-semibold text-gray-900'>
+                                {"Sách - "}
                                 {products.product?.title}
                             </h1>
                         </div>
@@ -161,10 +141,32 @@ export default function ProductDetails() {
                             <h2 className="sr-only">Product information</h2>
 
                             <div className='flex space-x-5 items-center text-lg lg:text-xl text-gray-900 mt-6'>
-                                <p className='font-semibold'>{products.product?.discountedPrice}</p>
-                                <p className='opacity-50 line-through'> {products.product?.price} </p>
-                                <p className='text-green-600 font-semibold'>{products.product?.discountPersent}% Off</p>
+                                <p className='font-semibold'>{products.product?.discountedPrice} K</p>
+                                <p className='opacity-50 line-through'> {products.product?.price} K</p>
+                                <p className='text-green-600 font-semibold'>{products.product?.discountPercent}% Off</p>
                             </div>
+
+                            <div className="lg:col-span-2 pt-5">
+                                <h1 className="text-lg lg:text-xl font-semibold text-gray-900">
+                                    {"Mô Tả Sản Phẩm: "}
+                                </h1>
+                                <h1 className='text-lg lg:text-xl text-gray-900 opacity-60 pt-1'>
+                                    {"Tác Giả: "}
+                                    {products.product?.author}
+                                </h1>
+                                <h1 className='text-lg lg:text-xl text-gray-900 opacity-60 pt-1'>
+                                    {"Nhà Xuất Bản: "}
+                                    {products.product?.publisher}
+                                </h1>
+                                <h1 className='text-lg lg:text-xl text-gray-900 opacity-60 pt-1'>
+                                    {"ISBN: "}
+                                    {products.product?.isbn}
+                                </h1>
+                                <h1 className='text-lg lg:text-xl text-gray-900 opacity-60 pt-1'>
+                                    {"Giới thiệu sách: "}
+                                    {products.product?.description}
+                                </h1>
+                            </div>  
 
                             {/* Reviews */}
                             <div className="mt-6">
@@ -184,7 +186,7 @@ export default function ProductDetails() {
                                 {/* Quatity */}
                                 <div className="mt-10">
                                     <div className="flex items-center justify-between">
-                                        <h3 className="text-sm font-medium text-gray-900">Số Lượng</h3>
+                                        <h3 className="text-sm font-medium text-gray-900"></h3>
 
 
                                     </div>
@@ -254,7 +256,7 @@ export default function ProductDetails() {
                         <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
                             {/* Description and details */}
                             <div>
-                                <h3 className="sr-only">Description</h3>
+                                <h3 className="sr-only"></h3>
 
                                 <div className="space-y-6">
                                     <p className="text-base text-gray-900">{product.description}</p>
@@ -262,7 +264,7 @@ export default function ProductDetails() {
                             </div>
 
                             <div className="mt-10">
-                                <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
+                                <h3 className="text-sm font-medium text-gray-900"></h3>
 
                                 <div className="mt-4">
                                     <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
@@ -276,7 +278,7 @@ export default function ProductDetails() {
                             </div>
 
                             <div className="mt-10">
-                                <h2 className="text-sm font-medium text-gray-900">Details</h2>
+                                <h2 className="text-sm font-medium text-gray-900"></h2>
 
                                 <div className="mt-4 space-y-6">
                                     <p className="text-sm text-gray-600">{product.details}</p>
@@ -286,7 +288,7 @@ export default function ProductDetails() {
                     </div>
                 </section>
                 {/* Đánh giá người mua */}
-                <section>
+                <section className='pt-20'>
                     <h1 className="font-semibold text-lg pb-4"> Khách hàng đánh giá</h1>
 
                     <div className="border p-5">

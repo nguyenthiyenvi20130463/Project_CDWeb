@@ -11,7 +11,10 @@ import {
     FIND_PRODUCTS_SUCCESS,
     FIND_PRODUCT_BY_ID_FAILURE,
     FIND_PRODUCT_BY_ID_REQUEST,
-    FIND_PRODUCT_BY_ID_SUCCESS
+    FIND_PRODUCT_BY_ID_SUCCESS,
+    UPDATE_PRODUCT_FAILURE,
+    UPDATE_PRODUCT_REQUEST,
+    UPDATE_PRODUCT_SUCCESS
 } from "./ActionType";
 
 export const findProducts = (reqData) => async (dispatch) => {
@@ -54,7 +57,7 @@ export const findProductsById = (reqData) => async (dispatch) => {
 }
 
 export const createProduct = (product) => async (dispatch) => {
-    console.log("create product data - ", product)
+    console.log("create product data: ", product)
     try {
         dispatch({ type: CREATE_PRODUCT_REQUEST })
 
@@ -84,3 +87,20 @@ export const deleteProduct = (productId) => async (dispatch) => {
         dispatch({ type: DELETE_PRODUCT_FAILURE, payload: error.message })
     }
 }
+
+export const updateProduct = (product) => async (dispatch) => {
+    const { id, ...updatedProduct } = product; 
+    try {
+        dispatch({ type: UPDATE_PRODUCT_REQUEST });
+
+        const { data } = await api.put(`/api/admin/products/${id}/update`, updatedProduct);
+        console.log("Updated product: ", data);
+        dispatch({
+            type: UPDATE_PRODUCT_SUCCESS,
+            payload: data, 
+        });
+    } catch (error) {
+        console.log("Error updating product: ", error);
+        dispatch({ type: UPDATE_PRODUCT_FAILURE, payload: error.message });
+    }
+};

@@ -58,11 +58,11 @@ const OrdersTable = () => {
                             <TableRow>
                                 <TableCell>Image</TableCell>
                                 <TableCell align="left">Title</TableCell>
-                                <TableCell align="left">Id</TableCell>
-                                <TableCell align="left">Price</TableCell>
-                                <TableCell align="left">Status</TableCell>
-                                <TableCell align="left">Update</TableCell>
-                                <TableCell align="left">Delete</TableCell>
+                                <TableCell align="center">Id</TableCell>
+                                <TableCell align="center">Price</TableCell>
+                                <TableCell align="center">Status</TableCell>
+                                <TableCell align="center">Update</TableCell>
+                                <TableCell align="center">Delete</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -82,15 +82,15 @@ const OrdersTable = () => {
                                         {/* {item.title} */}
                                     </TableCell>
 
-                                    <TableCell align="left">{item.id}</TableCell>
-                                    <TableCell align="left">{item.totalPrice}</TableCell>
-                                    <TableCell align="left"><span className={`text-white px-5 py-2 rounded-full 
+                                    <TableCell align="center">{item.id}</TableCell>
+                                    <TableCell align="center">{item.totalPrice}</TableCell>
+                                    <TableCell align="center"><span className={`text-white px-5 py-2 rounded-full 
                                         ${item.orderStatus === "CONFIRMED" ? "bg-[#25CCF7]" :
                                             item.orderStatus === "SHIPPED" ? "bg-[#EEC213]" :
                                                 item.orderStatus === "PLACED" ? "bg-[#6ab04c]" :
                                                     item.orderStatus == "PENDING" ? "bg-[#7B8788]" :
                                                         "bg-[#FF362E]"}`}>{item.orderStatus}</span></TableCell>
-                                    <TableCell align="left">
+                                    <TableCell align="center">
                                         <Button
                                             id="basic-button"
                                             aria-haspopup="true"
@@ -115,7 +115,7 @@ const OrdersTable = () => {
                                         </Menu>
                                     </TableCell>
 
-                                    <TableCell align="left">
+                                    <TableCell align="center">
                                         <Button
                                             onClick={() => handleDeleteOrder(item.id)}
                                             variant='outlined'

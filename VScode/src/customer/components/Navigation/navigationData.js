@@ -66,8 +66,8 @@ export const navigation = {
           id: 'sach_hay',
           name: 'Sách Hay',
           items: [
-            { name: 'Văn Học Lãng Mạn ', id: 'van_hoc' },
-            { name: 'Tâm Lý Học', id: 'tam_ly' },
+            { name: 'Văn Học Lãng Mạn ', id: 'van_hoc_lang_man' },
+            { name: 'Tâm Lý Học', id: 'tam_ly_hoc' },
             { name: 'Hướng Nghiệp & Phát Triển bản thân', id: 'huong_nghiep' },
           ],
         },

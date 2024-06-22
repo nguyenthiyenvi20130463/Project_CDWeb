@@ -58,7 +58,7 @@ const OrderTableView = () => {
                             <TableRow>
                                 <TableCell>Image</TableCell>
                                 <TableCell align="left">Title</TableCell>
-                                <TableCell align="left">Status</TableCell>
+                                <TableCell align="center">Status</TableCell>
 
                             </TableRow>
                         </TableHead>
@@ -70,14 +70,14 @@ const OrderTableView = () => {
                                 >
                                     <TableCell align="" className=''>
                                         <AvatarGroup max={3} sx={{ justifyContent: "start" }}>
-                                            {item.orderItems.slice(0, 3).map((orderItem) => <Avatar src={orderItem.product.imageUrl}></Avatar>)}
+                                            {item.orderItems.slice(0,3).map((orderItem) => <Avatar src={orderItem.product.imageUrl}></Avatar>)}
                                         </AvatarGroup>
                                     </TableCell>
                                     <TableCell align='left' scope="row">
                                         {item.orderItems.map((orderItem) => <p> {orderItem.product.title}</p>)}
                                         {/* {item.title} */}
                                     </TableCell>
-                                    <TableCell align="left"><span className={`text-white px-5 py-2 rounded-full 
+                                    <TableCell align="center"><span className={`text-white px-5 py-2 rounded-full 
                                         ${item.orderStatus === "CONFIRMED" ? "bg-[#25CCF7]" :
                                             item.orderStatus === "SHIPPED" ? "bg-[#EEC213]" :
                                                 item.orderStatus === "PLACED" ? "bg-[#6ab04c]" :

@@ -50,10 +50,10 @@ public class AdminProductController {
 		return new ResponseEntity<>(products, HttpStatus.OK);
 	}
 	@PutMapping("/{productId}/update")
-	public ResponseEntity<Product> updateProduct(@RequestBody Product req,@PathVariable Long productId) throws ProductException{
+	public ResponseEntity<Product> updateProduct(@RequestBody CreateProductRequest req,@PathVariable Long productId) throws ProductException{
 		
 		Product product = productService.updateProduct(productId, req);
-		return new ResponseEntity<Product>(product,HttpStatus.CREATED);
+		return new ResponseEntity<Product>(product,HttpStatus.OK);
 		
 	}
 	

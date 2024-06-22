@@ -12,23 +12,17 @@ import React, { Fragment, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { createProduct } from '../../State/Product/Action';
 
-const initialSizes = [
-    { name: "S", quantity: 0 },
-    { name: "M", quantity: 0 },
-    { name: "L", quantity: 0 },
-];
-
 const CreateProductForm = () => {
 
     const [productData, setProductData] = useState({
         imageUrl: "",
-        brand: "",
+        author: "",
         title: "",
-        color: "",
+        publisher: "",
+        isbn: "",
         discountedPrice: "",
         price: "",
-        discountPersent: "",
-        size: initialSizes,
+        discountPercent: "",
         quantity: "",
         topLavelCategory: "",
         secondLavelCategory: "",
@@ -44,18 +38,6 @@ const CreateProductForm = () => {
         setProductData((prevSate) => ({
             ...prevSate,
             [name]: value,
-        }));
-    };
-
-    const handleSizeChange = (e, index) => {
-        let { name, value } = e.target;
-        name === "size_quantity" ? name = "quantity" : name = e.target.name;
-
-        const sizes = [...productData.size];
-        sizes[index][name] = value;
-        setProductData((prevSate) => ({
-            ...prevSate,
-            size: sizes,
         }));
     };
 
@@ -92,9 +74,9 @@ const CreateProductForm = () => {
                     <Grid item xs={12} sm={6}>
                         <TextField
                             fullWidth
-                            label="Brand"
-                            name="brand"
-                            value={productData.brand}
+                            label="Author"
+                            name="author"
+                            value={productData.author}
                             onChange={handleChange}
                         />
                     </Grid>
@@ -112,9 +94,19 @@ const CreateProductForm = () => {
                     <Grid item xs={12} sm={6}>
                         <TextField
                             fullWidth
-                            label="Color"
-                            name="color"
-                            value={productData.color}
+                            label="Publisher"
+                            name="publisher"
+                            value={productData.publisher}
+                            onChange={handleChange}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                        <TextField
+                            fullWidth
+                            label="ISBN"
+                            name="isbn"
+                            value={productData.isbn}
                             onChange={handleChange}
                         />
                     </Grid>
@@ -130,7 +122,7 @@ const CreateProductForm = () => {
                         />
                     </Grid>
 
-                    <Grid item xs={12} sm={4}>
+                    <Grid item xs={12} sm={6}>
                         <TextField
                             fullWidth
                             label="Price"
@@ -141,7 +133,7 @@ const CreateProductForm = () => {
                         />
                     </Grid>
 
-                    <Grid item xs={12} sm={4}>
+                    <Grid item xs={12} sm={6}>
                         <TextField
                             fullWidth
                             label="Discounted Price"
@@ -152,12 +144,12 @@ const CreateProductForm = () => {
                         />
                     </Grid>
 
-                    <Grid item xs={12} sm={4}>
+                    <Grid item xs={12} sm={6}>
                         <TextField
                             fullWidth
                             label="Discount Percentage"
-                            name="discountPersent"
-                            value={productData.discountPersent}
+                            name="discountPercent"
+                            value={productData.discountPercent}
                             onChange={handleChange}
                             type="number"
                         />
@@ -172,10 +164,7 @@ const CreateProductForm = () => {
                                 onChange={handleChange}
                                 label="Top Level Category"
                             >
-                                <MenuItem value="men">Men</MenuItem>
-                                <MenuItem value="women">Women</MenuItem>
-                                <MenuItem value="kids">Kids</MenuItem>
-                                <MenuItem value="sach">Sach</MenuItem>
+                                <MenuItem value="sach">Sách</MenuItem>
                             </Select>
                         </FormControl>
                     </Grid>
@@ -189,10 +178,8 @@ const CreateProductForm = () => {
                                 onChange={handleChange}
                                 label="Second Level Category"
                             >
-                                <MenuItem value="clothing">Clothing</MenuItem>
-                                <MenuItem value="accessories">Accessories</MenuItem>
-                                <MenuItem value="brands">Brands</MenuItem>
                                 <MenuItem value="sach_hay">Sách Hay</MenuItem>
+                                <MenuItem value="sach_tham_khao">Sách Tham Khảo</MenuItem>
                             </Select>
                         </FormControl>
                     </Grid>
@@ -206,11 +193,10 @@ const CreateProductForm = () => {
                                 onChange={handleChange}
                                 label="Third Level Category"
                             >
-                                <MenuItem value="top">Tops</MenuItem>
-                                <MenuItem value="women_dress">Dresses</MenuItem>
                                 <MenuItem value="hanh_dong">Văn Học Hành Động</MenuItem>
-                                <MenuItem value="huong_nghiep">Sách Hướng Nghiệp Và Phát Triển Bản Thân</MenuItem>
-                                <MenuItem value="tieng_anh">Sách Tiếng Anh</MenuItem>
+                                <MenuItem value="tam_ly_hoc">Tâm Lý Học</MenuItem>
+                                <MenuItem value="huong_nghiep">Hướng Nghiệp Và Phát Triển Bản Thân</MenuItem>
+                                <MenuItem value="tieng_anh">Tiếng Anh</MenuItem>
                                 <MenuItem value="van_hoc_lang_man">Văn Học Lãng Mạn</MenuItem>
                             </Select>
                         </FormControl>
@@ -223,36 +209,11 @@ const CreateProductForm = () => {
                             label="Description"
                             multiline
                             name="description"
-                            rows={3}
+                            rows={10}
                             onChange={handleChange}
                             value={productData.description}
                         />
                     </Grid>
-                    {productData.size.map((size, index) => (
-                        <Grid container item spacing={3}>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    label="Size Name"
-                                    name="name"
-                                    value={size.name}
-                                    onChange={(event) => handleSizeChange(event, index)}
-                                    required
-                                    fullWidth
-                                />
-                            </Grid>
-
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    label="Quantity"
-                                    name="size_quantity"
-                                    type="number"
-                                    onChange={(event) => handleSizeChange(event, index)}
-                                    required
-                                    fullWidth
-                                />
-                            </Grid>
-                        </Grid>
-                    ))}
 
                     <Grid item xs={12}>
                         <Button
