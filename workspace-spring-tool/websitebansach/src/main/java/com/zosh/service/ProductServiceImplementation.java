@@ -74,9 +74,9 @@ public class ProductServiceImplementation implements ProductService {
 		Product product = new Product();
 		product.setTitle(req.getTitle());
 		product.setAuthor(req.getAuthor());
-		product.setDesciption(req.getDescription());
+		product.setDescription(req.getDescription());
 		product.setDiscountedPrice(req.getDiscountedPrice());
-		product.setDiscountPersent(req.getDiscountPersent());
+		product.setDiscountPercent(req.getDiscountPercent());
 		product.setImageUrl(req.getImageUrl());
 		product.setPublisher(req.getPublisher());
 		product.setPrice(req.getPrice());
@@ -100,14 +100,43 @@ public class ProductServiceImplementation implements ProductService {
 	}
 
 	@Override
-	public Product updateProduct(Long productId, Product req) throws ProductException {
-		Product product = findProductById(productId);
+	public Product updateProduct(Long productId, CreateProductRequest req) throws ProductException {
+	    Product product = findProductById(productId);
 
-		if (req.getQuantity() != 0) {
-			product.setQuantity(req.getQuantity());
+	    if (req.getTitle() != null) {
+	        product.setTitle(req.getTitle());
+	    }
+	    if (req.getAuthor() != null) {
+	        product.setAuthor(req.getAuthor());
+	    }
+	    if (req.getDescription() != null) {
+	        product.setDescription(req.getDescription());
+	    }
+	    if (req.getDiscountedPrice() != null) {
+	        product.setDiscountedPrice(req.getDiscountedPrice());
+	    }
+	    if (req.getDiscountPercent() != null) {
+	        product.setDiscountPercent(req.getDiscountPercent());
+	    }
+	    if (req.getImageUrl() != null) {
+	        product.setImageUrl(req.getImageUrl());
+	    }
+	    if (req.getPublisher() != null) {
+	        product.setPublisher(req.getPublisher());
+	    }
+	    if (req.getPrice() != null) {
+	        product.setPrice(req.getPrice());
+	    }
+	    if (req.getIsbn() != null) {
+	        product.setIsbn(req.getIsbn());
+	    }
+	    if (req.getQuantity() != null) {
+	        product.setQuantity(req.getQuantity());
+	    }
 
-		}
-		return productRepository.save(product);
+	    product.setCreateAt(LocalDateTime.now());
+
+	    return productRepository.save(product);
 	}
 
 	@Override

@@ -29,18 +29,18 @@ public class Product {
 
 	private String title;
 
-	private String desciption;
+	private String description;
 
-	private int price;
+	private Integer price;
 
 	@Column(name = "discounted_price")
 	private int discountedPrice;
 
-	@Column(name = "discount_persent")
-	private int discountPersent;
+	@Column(name = "discount_percent")
+	private Integer discountPercent;
 
 	@Column(name = "quantity")
-	private int quantity;
+	private Integer quantity;
 
 	@Column(name = "author")
 	private String author;
@@ -73,16 +73,16 @@ public class Product {
 
 	}
 
-	public Product(Long id, String title, String desciption, int price, int discountedPrice, int discountPersent,
+	public Product(Long id, String title, String description, int price, int discountedPrice, int discountPercent,
 			int quantity, String author, String publisher, String isbn, String imageUrl, List<Rating> ratings,
 			List<Review> reviews, int numRatings, Category category, LocalDateTime createAt) {
 		super();
 		this.id = id;
 		this.title = title;
-		this.desciption = desciption;
+		this.description = description;
 		this.price = price;
 		this.discountedPrice = discountedPrice;
-		this.discountPersent = discountPersent;
+		this.discountPercent = discountPercent;
 		this.quantity = quantity;
 		this.author = author;
 		this.publisher = publisher;
@@ -111,15 +111,15 @@ public class Product {
 		this.title = title;
 	}
 
-	public String getDesciption() {
-		return desciption;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDesciption(String desciption) {
-		this.desciption = desciption;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public int getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
 
@@ -127,7 +127,7 @@ public class Product {
 		this.price = price;
 	}
 
-	public int getDiscountedPrice() {
+	public Integer getDiscountedPrice() {
 		return discountedPrice;
 	}
 
@@ -135,15 +135,15 @@ public class Product {
 		this.discountedPrice = discountedPrice;
 	}
 
-	public int getDiscountPersent() {
-		return discountPersent;
+	public Integer getDiscountPercent() {
+		return discountPercent;
 	}
 
-	public void setDiscountPersent(int discountPersent) {
-		this.discountPersent = discountPersent;
+	public void setDiscountPercent(int discountPercent) {
+		this.discountPercent = discountPercent;
 	}
 
-	public int getQuantity() {
+	public Integer getQuantity() {
 		return quantity;
 	}
 

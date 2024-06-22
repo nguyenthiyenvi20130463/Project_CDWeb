@@ -7,10 +7,10 @@ public class CreateProductRequest {
 
 	private String title;
 	private String description;
-	private int price;
-	private int discountedPrice;
-	private int discountPersent;
-	private int quantity;
+	private Integer price;
+	private Integer discountedPrice;
+	private Integer discountPercent;
+	private Integer quantity;
 	private String author;
 	private String publisher;
 	private String isbn;
@@ -36,7 +36,7 @@ public class CreateProductRequest {
 		this.description = description;
 	}
 
-	public int getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
 
@@ -44,7 +44,7 @@ public class CreateProductRequest {
 		this.price = price;
 	}
 
-	public int getDiscountedPrice() {
+	public Integer getDiscountedPrice() {
 		return discountedPrice;
 	}
 
@@ -52,15 +52,15 @@ public class CreateProductRequest {
 		this.discountedPrice = discountedPrice;
 	}
 
-	public int getDiscountPersent() {
-		return discountPersent;
+	public Integer getDiscountPercent() {
+		return discountPercent;
 	}
 
-	public void setDiscountPersent(int discountPersent) {
-		this.discountPersent = discountPersent;
+	public void setDiscountPercent(int discountPersent) {
+		this.discountPercent = discountPersent;
 	}
 
-	public int getQuantity() {
+	public Integer getQuantity() {
 		return quantity;
 	}
 

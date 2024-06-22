@@ -55,8 +55,8 @@ const ProductTableView = () => {
                                     </TableCell>
 
                                     
-                                    <TableCell align="left">{item.price}</TableCell>
-                                    <TableCell align="left">{item.quantity}</TableCell>
+                                    <TableCell align="center">{item.price}</TableCell>
+                                    <TableCell align="center">{item.quantity}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
