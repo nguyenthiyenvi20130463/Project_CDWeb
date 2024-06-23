@@ -83,7 +83,6 @@ export default function Product() {
 
   useEffect(() => {
     const [minPrice, maxPrice] = priceValue === null ? [0, 10000] : priceValue.split("-").map(Number);
-
     const data = {
       category: param.lavelThree,
       minPrice,
@@ -101,9 +100,21 @@ export default function Product() {
     disccount,
     sortValue,
     pageNumber,
-    stock
+    stock,
   ])
 
+  const sortProductsByDiscountedPrice = (data, sort) => {
+    if (!data) return [];
+    const sortedProducts = data.sort((a, b) => {
+      if (sort === 'price_low') {
+        return a.discountedPrice - b.discountedPrice;
+      } else if (sort === 'price_high') {
+        return b.discountedPrice - a.discountedPrice;
+      }
+      return 0;
+    });
+    return sortedProducts;
+  };
 
   return (
     <div className="bg-white">
@@ -190,7 +201,7 @@ export default function Product() {
                           </>
                         )}
                       </Disclosure>
-                     ))} 
+                    ))}
                   </form>
                 </Dialog.Panel>
               </Transition.Child>
@@ -204,7 +215,7 @@ export default function Product() {
 
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
-                <div>
+                {/* <div>
                   <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
                     Sort
                     <ChevronDownIcon
@@ -212,7 +223,7 @@ export default function Product() {
                       aria-hidden="true"
                     />
                   </Menu.Button>
-                </div>
+                </div> */}
 
                 <Transition
                   as={Fragment}
@@ -224,7 +235,7 @@ export default function Product() {
                   leaveTo="transform opacity-0 scale-95"
                 >
                   <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
-                    <div className="py-1">
+                    {/* <div className="py-1">
                       {sortOptions.map((option) => (
                         <Menu.Item key={option.name}>
                           {({ active }) => (
@@ -241,7 +252,7 @@ export default function Product() {
                           )}
                         </Menu.Item>
                       ))}
-                    </div>
+                    </div> */}
                   </Menu.Items>
                 </Transition>
               </Menu>
@@ -369,7 +380,7 @@ export default function Product() {
               <div className="lg:col-span-4 w-full">
 
                 <div className='flex flex-wrap justity-center bg-white py-5'>
-                  {products.products && products.products?.content?.map((item) => (
+                  {products.products && sortProductsByDiscountedPrice(products.products.content, sortValue).map((item) => (
                     <ProductCard product={item} />
                   ))}
                 </div>

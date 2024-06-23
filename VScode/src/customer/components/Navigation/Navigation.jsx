@@ -259,7 +259,7 @@ export default function Navigation() {
               </button>
 
               {/* Logo */}
-              <div className="ml-4 flex lg:ml-0">
+              <div onClick={() => navigate(`/`)} className="ml-4 flex lg:ml-0">
 
                 <span className="sr-only">Your Company</span>
                 <img
@@ -461,7 +461,7 @@ export default function Navigation() {
                 </div>
 
                 {/* Cart */}
-                <div className="ml-4 flow-root lg:ml-6">
+                <div onClick={() => navigate(`/cart`)} className="ml-4 flow-root lg:ml-6">
                   <Button
                     className="group -m-2 flex items-center p-2"
                   >

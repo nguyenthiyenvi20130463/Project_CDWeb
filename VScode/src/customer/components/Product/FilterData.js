@@ -24,7 +24,14 @@ export const singleFilter = [
     //         { value: "tieng_anh", label: "Tiếng Anh" }
     //     ],
     // },
-
+    {
+        id: "sort",
+        name: "Sort",
+        options: [
+            { value: "price_low", label: "Price: Low to High" },
+            { value: "price_high", label: "Price: High to Low" }
+        ],
+    },
     {
         id: "price",
         name: "Price",
